@@ -16,7 +16,7 @@ const DailyRecord = ({ record }) => {
 
     return (
         <div className="row-broker" style={{ alignContent: 'center', justifyContent: 'space-between', alignItems: "center", height: "10vw" }}>
-            <Spacer width="5vw"></Spacer>
+
             <CircleButton icon={category.icon} size="8vw" onClick={() => { }} ></CircleButton>
             <Spacer width="2vw"></Spacer>
             <div className="col-broker" style={{ alignItems: "start" }}>
@@ -28,7 +28,7 @@ const DailyRecord = ({ record }) => {
                 </div>
             </div>
             <div style={{ marginLeft: 'auto', color: isExpense ? 'red' : 'green' }}>{isExpense ? '-' : ''}{unit}{amountStr}</div>
-            <Spacer width="5vw"></Spacer>
+
         </div>
     );
 };

@@ -62,11 +62,11 @@ const MonthlyRecords = ({ records }) => {
         return acc;
     }, {});
     return (
-        <div className="col-broker" style={{ height: "100vh", alignItems: 'center' }}>
+         <div className="col-broker" style={{width:'90vw', height: "90vh", alignItems: 'center',marginLeft:'5vw',marginRight:'5vw' }}>
             {
                 Object.keys(recordsByDate).map((date, index) => {
                     return (
-                        <div key={index}>
+                        <div key={index}  style={{width:'100%'}} >
                             {DailyRecords({ date: recordsByDate[date][0].date, records: recordsByDate[date] })}
                         </div>
                     )
