@@ -32,7 +32,33 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+.App-background {
+  background-color: #e8c2615f;
+}
+
+@font-face {
+  font-family: 'SmileySans';
+  src: url('./font/SmileySans-Oblique.otf') format('otf'),
+    url('./font/SmileySans-Oblique.otf.woff2') format('woff2');
+}
+
+.record-date{
+  font-weight: bold;
+}
+
+.row-broker{
+  display: flex;
+  flex-direction: row;
+}
+
+.col-broker{
+  display: flex;
+  flex-direction: column;
+
 }

@@ -1,23 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+
+import Header from './header';
+import FilterBar from './filter_bar';
+import StatisticBar from './statistic_bar';
+import MonthlyRecords from './monthly_records';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App App-background">
+      <Header />
+      <FilterBar />
+      <StatisticBar expense={1362.74} income={11988.7} />
+      <MonthlyRecords records={[]}></MonthlyRecords>
     </div>
   );
 }
