@@ -14,7 +14,7 @@ const DailyRecords = ({ date, records }) => {
 
     const seperator = () => (
         <div style={{ width: "100% - 10vw ", marginLeft: "10vw" }}>
-            <HorizontalSeperator height="1px" margin="2vw" color="gray" ></HorizontalSeperator>
+            <HorizontalSeperator height="0.5px" margin="1vw" color="gray" ></HorizontalSeperator>
         </div>
     )
 
@@ -32,15 +32,15 @@ const DailyRecords = ({ date, records }) => {
     return (
         <div>
             <div style={{ display: 'flex', height: '8vw', alignItems: 'end', justifyItems: 'column', alignContent: 'center' }}>
-                <div style={{ fontWeight: "bold", alignItems: "start", display: "flex", borderBottomStyle: "soild", borderBottomColor: "black" }}>
-                    <Spacer width="5vw"></Spacer>
+                <div style={{ fontWeight: "bold", alignItems: "start", display: "flex" }}>
+                    <Spacer width="3vw"></Spacer>
                     {month} {day}, {weekday}
                 </div>
             </div>
             <div className="row-broker" >
                 {HorizontalSeperator({ height: "1px", margin: "2vw", color: "gray" })}
             </div>
-            <div>
+            <div style={{ marginLeft: "3vw", marginRight: "3vw" }}>
                 {elemetsOfRecords}
             </div>
         </div>

@@ -9,7 +9,7 @@ import Spacer from "./spacer";
 
 const DailyRecord = ({ record }) => {
     const { category, account, amount, unit, isExpense } = record;
-    const iconSize = '5vw'
+    // const iconSize = '5vw'
 
     // amount 转为保留两位小数的字符串
     const amountStr = amount.toFixed(2);
@@ -20,11 +20,11 @@ const DailyRecord = ({ record }) => {
             <CircleButton icon={category.icon} size="8vw" onClick={() => { }} ></CircleButton>
             <Spacer width="2vw"></Spacer>
             <div className="col-broker" style={{ alignItems: "start" }}>
-                <div>{category.code}</div>
-                <div style={{ display: 'flex', flexDirection: 'row', alignContent: 'left' }}>
-                    <CircleButton icon={account.icon} size={iconSize} onClick={() => { }}></CircleButton>
+                <div style={{ fontWeight: "400" }}>{category.code}</div>
+                <div style={{ display: 'flex', flexDirection: 'row', alignContent: 'left', alignItems: 'center' }}>
+                    <CircleButton icon={account.icon} size="4vw" onClick={() => { }}></CircleButton>
                     <Spacer width="2vw"></Spacer>
-                    <span>{account.code}</span>
+                    <span style={{ fontWeight: "200" }}>{account.code}</span>
                 </div>
             </div>
             <div style={{ marginLeft: 'auto', color: isExpense ? 'red' : 'green' }}>{isExpense ? '-' : ''}{unit}{amountStr}</div>
