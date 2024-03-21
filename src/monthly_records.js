@@ -81,14 +81,13 @@ const MonthlyRecords = ({ records }) => {
         daily.push({ "date": date, "data": recordsByDate[date] });
     });
 
-    console.log(daily)
     // sort daily by date
     daily.sort((a, b) => {
         return b.date - a.date;
     });
 
     return (
-        <div className="col-broker" style={{ width: '96vw', height: "90vh", alignItems: 'center', marginLeft: '2vw', marginRight: '2vw' }}>
+        <div className="col-broker" style={{ width: '96%', height: "100%", alignItems: 'center', marginLeft: '2%', marginRight: '2%' }}>
             {
                 daily.map((daily, index) => {
                     return (
