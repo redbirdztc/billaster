@@ -5,7 +5,6 @@ import propTypes from "prop-types";
 import "./App.css"
 
 import CircleButton from "./button_circle";
-import Spacer from "./spacer";
 
 const DailyRecord = ({ record }) => {
     const { category, account, amount, unit, isExpense } = record;
@@ -15,20 +14,20 @@ const DailyRecord = ({ record }) => {
     const amountStr = amount.toFixed(2);
 
     return (
-        <div className="row-broker" style={{ alignContent: 'center', justifyContent: 'space-between', alignItems: "center", height: "10vw" }}>
-
-            <CircleButton icon={category.icon} size="8vw" onClick={() => { }} ></CircleButton>
-            <Spacer width="2vw"></Spacer>
-            <div className="col-broker" style={{ alignItems: "start" }}>
-                <div style={{ fontWeight: "400" }}>{category.code}</div>
-                <div style={{ display: 'flex', flexDirection: 'row', alignContent: 'left', alignItems: 'center' }}>
-                    <CircleButton icon={account.icon} size="4vw" onClick={() => { }}></CircleButton>
-                    <Spacer width="2vw"></Spacer>
-                    <span style={{ fontWeight: "200" }}>{account.code}</span>
+        <div className="h-12 flex flex-row justify-between content-center align-center items-center" >
+            <div className="w-10 h-fit ">
+                <CircleButton icon={category.icon} onClick={() => { }} ></CircleButton>
+            </div>
+            <div className="flex-col ml-2 items-start">
+                <div className='font-normal'>{category.code}</div>
+                <div className='flex flex-row items-center'>
+                    <div className="w-4 h-fit">
+                        <CircleButton icon={account.icon} onClick={() => { }}></CircleButton>
+                    </div>
+                    <span className='ml-2 font-extralight'>{account.code}</span>
                 </div>
             </div>
-            <div style={{ marginLeft: 'auto', color: isExpense ? 'red' : 'green' }}>{isExpense ? '-' : ''}{unit}{amountStr}</div>
-
+            <div className="ml-auto" style={{ color: isExpense ? 'red' : 'green' }}>{isExpense ? '-' : ''}{unit}{amountStr}</div>
         </div>
     );
 };

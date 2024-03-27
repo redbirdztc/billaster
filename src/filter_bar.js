@@ -1,8 +1,8 @@
 import React from 'react';
 
+
 import DateDisplay from './date';
-import Button from './button_square';
-import Spacer from './spacer';
+import SquareButton from './button_square';
 import { useState } from 'react';
 
 import LeftIcon from './img/left.png';
@@ -22,24 +22,20 @@ const FilterBar = () => {
     const filterTheResult = () => {
         console.log("filterTheResult")
     }
-    const iconSize = "5vw"
 
     return (
-        <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100vw', height: '5vh' }}>
-                <Spacer width="18vw" />
-                <div style={{ marginRight: 'auto', display: 'flex' }}>
-                    <Button onClick={switchToLastMonth} icon={LeftIcon} size={iconSize} />
-                </div>
-                <div>  {DateDisplay({ date })}</div>
+        <div className='flex justify-center items-center w-full h-12' >
+            <div className='ml-20 mr-auto w-5 h-fit content-center' >
+                <SquareButton onClick={switchToLastMonth} icon={LeftIcon} />
+            </div>
+            <div>{DateDisplay({ date })}</div>
 
-                <div style={{ marginLeft: 'auto', display: 'flex' }}>
-                    <Button onClick={switchToNextMonth} icon={RightIcon} size={iconSize} />
-                </div>
+            <div className='w-5 h-fit' style={{ marginLeft: 'auto', display: 'flex' }}>
+                <SquareButton onClick={switchToNextMonth} icon={RightIcon} />
+            </div>
 
-                <Spacer width="10vw" />
-                <Button onClick={filterTheResult} icon={SortIcon} size={iconSize} />
-                <Spacer width="5vw" />
+            <div className='w-5 h-fit ml-10 mr-5' >
+                <SquareButton onClick={filterTheResult} icon={SortIcon} />
             </div>
         </div>
     );

@@ -87,7 +87,7 @@ const MonthlyRecords = ({ records }) => {
     });
 
     return (
-        <div className="col-broker" style={{ width: '96%', height: "100%", alignItems: 'center', marginLeft: '2%', marginRight: '2%' }}>
+        <div className="flex flex-col ml-2 mr-2 items-center w-[96%] h-full">
             {
                 daily.map((daily, index) => {
                     return (

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import "./App.css"
 
-const UpperDrawer = ({ height, movement, maxMovement, subElements }) => {
+const UpperDrawer = ({ movement, maxMovement, children, zIndex, height }) => {
     if (movement > 0) {
         movement = 0
     }
@@ -11,32 +11,35 @@ const UpperDrawer = ({ height, movement, maxMovement, subElements }) => {
     if (movement < -maxMovement) {
         movement = -maxMovement
     }
+
     console.log(movement)
+
     const style = {
+        zIndex: zIndex,
+        transform: `translateY(calc(${movement}px)) `,
         height: height,
-        width: "100%",
-        position: "absolute",
-        top: "0px",
-        left: "0px",
-        zIndex: "1",
-        transform: `translateY(${movement}px) `,
         transformOrigin: "top",
         transition: "transform 0.5s",
-        overflow: "hidden",
     }
 
     return (
-        <div style={style} className="App-background ">
-            {subElements}
+        <div style={style} className="
+            w-full
+            top-0
+            left-0
+            absolute
+            overflow-hidden">
+            {children}
         </div>
     )
 }
 
 UpperDrawer.propTypes = {
-    height: PropTypes.string.isRequired,
     movement: PropTypes.number.isRequired,
     maxMovement: PropTypes.number.isRequired,
-    subElements: PropTypes.arrayOf(PropTypes.element).isRequired,
+    children: PropTypes.node.isRequired,
+    zIndex: PropTypes.number.isRequired,
+    height: PropTypes.string,
 }
 
 export default UpperDrawer;
