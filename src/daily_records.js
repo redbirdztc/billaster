@@ -4,8 +4,6 @@ import propTypes from "prop-types";
 import "./App.css"
 
 import DailyRecord from "./daily_record";
-import Spacer from "./spacer";
-import HorizontalSeperator from "./horizentol_seperator";
 
 const DailyRecords = ({ date, records }) => {
     const month = date.toLocaleString('en-us', { month: "short" });
@@ -13,12 +11,10 @@ const DailyRecords = ({ date, records }) => {
     const weekday = date.toLocaleString('en-us', { weekday: "long" });
 
     const seperator = () => (
-        <div style={{ width: "100% - 10vw ", marginLeft: "10vw" }}>
-            <HorizontalSeperator height="0.5px" margin="1vw" color="gray" ></HorizontalSeperator>
-        </div>
+        <div className="flex flex-row w-auto ml-10 mt-1 mb-1 h-px bg-zinc-500" ></div>
     )
 
-    const elemetsOfRecords = records.map((record, index) => {
+    const elementsOfRecords = records.map((record, index) => {
         const isLast = index === Object.keys(records).length - 1;
 
         return (
@@ -31,17 +27,16 @@ const DailyRecords = ({ date, records }) => {
 
     return (
         <div>
-            <div style={{ display: 'flex', height: '8vw', alignItems: 'end', justifyItems: 'column', alignContent: 'center' }}>
-                <div style={{ fontWeight: "bold", alignItems: "start", display: "flex" }}>
-                    <Spacer width="3vw"></Spacer>
+            <div className="flex h-[8vw] items-end  ">
+                <div className="flex flex-row font-bold items-start justify-start ml-3" >
                     {month} {day}, {weekday}
                 </div>
             </div>
-            <div className="row-broker" >
-                {HorizontalSeperator({ height: "1px", margin: "2vw", color: "gray" })}
+            <div className="flex flex-row mt-1 mb-1 h-px w-full bg-zinc-600" >
+
             </div>
-            <div style={{ marginLeft: "3vw", marginRight: "3vw" }}>
-                {elemetsOfRecords}
+            <div className="ml-3 mr-3" >
+                {elementsOfRecords}
             </div>
         </div>
     )
