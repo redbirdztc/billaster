@@ -65,6 +65,22 @@ const MonthlyRecords = ({ records }) => {
             isExpense: false
         },
     ]
+    for (var i = 0; i < 20; i++) {
+        records.push({
+            date: new Date(new Date().setDate(new Date().getDate() + 1)),
+            category: {
+                "icon": FoodIcon,
+                "code": "Food"
+            },
+            account: {
+                "icon": PiggyBank,
+                "code": "Savings"
+            },
+            amount: 100,
+            unit: "Yuan",
+            isExpense: false
+        })
+    }
 
     // records 按照日期分组并按照日期倒序排序
     const recordsByDate = records.reduce((acc, record) => {
