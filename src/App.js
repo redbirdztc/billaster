@@ -10,16 +10,15 @@ import UpperDrawer from './upper_drawer';
 
 function App() {
   const [headerMovement, setHeaderMovement] = useState(0);
-  const [recordsMovement, setRecordsMovement] = useState(0);
   const [startY, setStartY] = useState(0);
 
   const handleTouchStart = (event) => {
     setStartY(event.touches[0].clientY);
   };
 
-  const handleTouchMove = (movement, maxMovement, setter) => (event) => {
+  const handleTouchMove = (maxMovement, setter) => (event) => {
     const touchY = event.touches[0].clientY;
-    var diffY = movement + (startY - touchY);
+    var diffY = startY - touchY;
 
     if (diffY < 0) {
       diffY = 0
@@ -31,23 +30,23 @@ function App() {
   };
 
   return (
-    <div >
-      <div  onTouchStart={handleTouchStart} onTouchMove={handleTouchMove(headerMovement, 96, setHeaderMovement)}>
-        <UpperDrawer movement={headerMovement} maxMovement={96} >
-          <div className='App-background  z-10'>
-            <Header/>
-            <FilterBar/>
+    <div>
+      <div className='App-background' onTouchStart={handleTouchStart} onTouchMove={handleTouchMove(96, setHeaderMovement)}>
+        <UpperDrawer movement={headerMovement} maxMovement={96} boxShadow={"0px 1px 16px 2px rgba(0,0,0,0.1)"}>
+          <div className='App-background'  >
+            <Header />
+            <FilterBar />
             <StatisticBar expense={1362.74} income={11988.7} />
           </div>
         </UpperDrawer>
-      </div>
 
-      <div className='top-36  w-full' onTouchStart={handleTouchStart} onTouchMove={handleTouchMove(recordsMovement, 180, setRecordsMovement)}>
-
-          <div className='App-background z-0' style={{ height: 'calc(100% - 9rem)' }} >
-            <MonthlyRecords records={[]}></MonthlyRecords>
+        <div className='w-full z-0 left-0 fixed' style={{ position: 'relative', top: `${144 - headerMovement}px` }}>
+          <div className='App-background' style={{ height: 'calc(100% - 9rem)' }}>
+            <MonthlyRecords records={[]} />
           </div>
+        </div>
       </div>
+
     </div>
   );
 }

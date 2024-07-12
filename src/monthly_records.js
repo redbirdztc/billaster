@@ -22,48 +22,6 @@ const MonthlyRecords = ({ records }) => {
             unit: "Yuan",
             isExpense: true
         },
-        {
-            date: new Date(),
-            category: {
-                "icon": FoodIcon,
-                "code": "Food"
-            },
-            account: {
-                "icon": PiggyBank,
-                "code": "Savings"
-            },
-            amount: 100,
-            unit: "Yuan",
-            isExpense: true
-        },
-        {
-            date: new Date(new Date().setDate(new Date().getDate() - 1)),
-            category: {
-                "icon": FoodIcon,
-                "code": "Food"
-            },
-            account: {
-                "icon": PiggyBank,
-                "code": "Savings"
-            },
-            amount: 100,
-            unit: "Yuan",
-            isExpense: false
-        },
-        {
-            date: new Date(new Date().setDate(new Date().getDate() + 1)),
-            category: {
-                "icon": FoodIcon,
-                "code": "Food"
-            },
-            account: {
-                "icon": PiggyBank,
-                "code": "Savings"
-            },
-            amount: 100,
-            unit: "Yuan",
-            isExpense: false
-        },
     ]
     for (var i = 0; i < 20; i++) {
         records.push({

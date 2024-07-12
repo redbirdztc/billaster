@@ -3,12 +3,13 @@ import PropTypes from "prop-types";
 
 import "./App.css"
 
-const UpperDrawer = ({ movement, children,  height }) => {
+const UpperDrawer = ({ movement, children, height, boxShadow }) => {
     const style = {
         transform: `translateY(calc(${-movement}px)) `,
         height: height,
         transformOrigin: "top",
-        transition: "transform 0.1s"
+        transition: "transform 0.1s",
+        boxShadow: boxShadow
     }
 
     console.log(movement)
@@ -17,7 +18,9 @@ const UpperDrawer = ({ movement, children,  height }) => {
             w-full
             top-0
             left-0
-            overflow-hidden">
+            overflow-hidden
+            fixed
+            z-10">
             {children}
         </div>
     )
@@ -27,6 +30,7 @@ UpperDrawer.propTypes = {
     movement: PropTypes.number.isRequired,
     children: PropTypes.node.isRequired,
     height: PropTypes.string,
+    boxShadow: PropTypes.string,
     zIndex: PropTypes.number
 }
 
