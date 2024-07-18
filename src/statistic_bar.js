@@ -9,7 +9,7 @@ const StatisticItem = ({ name, unit, amount }) => {
             <div className="w-full flex justify-center text-sm" >
                 {name}
             </div>
-            <div className='flex content-center w-full text-sm'>
+            <div className='flex content-center justify-center w-full text-sm'>
                 {unit} {amountString}
             </div>
         </div>
@@ -18,12 +18,17 @@ const StatisticItem = ({ name, unit, amount }) => {
 
 const StatisticBar = ({ expense, income }) => {
     return (
-        <div className='flex w-full justify-between h-12'>
-            <div></div>
-            <StatisticItem name="EXPENSE" unit="Yuan" amount={expense} />
-            <StatisticItem name="INCOME" unit="Yuan" amount={income} />
-            <StatisticItem name="TOTAL" unit="Yuan" amount={income - expense} />
-            <div></div>
+        <div className='flex w-full justify-center h-12'>
+            <div className='w-1/3'>
+                <StatisticItem name="EXPENSE" unit="Yuan" amount={expense} />
+            </div>
+            <div className='w-1/3'>
+                <StatisticItem name="INCOME" unit="Yuan" amount={income} />
+            </div>
+            <div className='w-1/3'>
+                <StatisticItem name="TOTAL" unit="Yuan" amount={income - expense} />
+            </div>
+
         </div >
     );
 }
