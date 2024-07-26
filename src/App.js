@@ -49,22 +49,19 @@ const footerBtns = [
   }
 ]
 
-const RecordsElement = ({ date }) => {
+const RecordsElement = ({ records }) => {
   // filter dataset by date
-  const data = generatedData.filter((record) => {
-    return record.date.getMonth() === date.getMonth();
-  })
   return (
     <div className='w-full z-0 left-0 pt-[10rem] pb-[3rem]' >
       <div className='App-background' style={{ height: 'calc(100% - 9rem)' }}>
-        <MonthlyRecords records={data} />
+        <MonthlyRecords records={records} />
       </div>
     </div>
   )
 }
 
 RecordsElement.propTypes = {
-  date: propTypes.object.isRequired
+  records: propTypes.arrayOf(propTypes.object).isRequired
 }
 
 function App() {
@@ -90,6 +87,11 @@ function App() {
     setter(diffY);
   };
 
+
+  const data = generatedData.filter((record) => {
+    return record.date.getMonth() === date.getMonth();
+  })
+
   return (
     <div >
       <div className='App-background' onTouchStart={handleTouchStart} onTouchMove={handleTouchMove(96, setHeaderMovement)}>
@@ -101,7 +103,7 @@ function App() {
           </div>
         </UpperDrawer>
 
-        <RecordsElement date={date} />
+        <RecordsElement records={data} />
 
         <div className='h-12 w-full fixed bottom-0 App-background'>
           <Footer btns={footerBtns} />

@@ -12,20 +12,24 @@ function generateRandomData(startMonth, endMonth, startDay, endDay) {
 
     while (currentDate <= endDate) {
         amount = Math.floor(Math.random() * 500); // 生成0到500的随机金额
-        data.push({
-            date: new Date(currentDate),
-            category: {
-                icon: FoodIcon,
-                code: "Food"
-            },
-            account: {
-                icon: PiggyBank,
-                code: "Savings"
-            },
-            amount: amount,
-            unit: "Yuan",
-            isExpense: true
-        });
+        const times = Math.floor(Math.random() * 10); // 生成0到10的随机次数
+
+        for (let i = 0; i < times; i++) {
+            data.push({
+                date: new Date(currentDate),
+                category: {
+                    icon: FoodIcon,
+                    code: "Food"
+                },
+                account: {
+                    icon: PiggyBank,
+                    code: "Savings"
+                },
+                amount: amount,
+                unit: "Yuan",
+                isExpense: true
+            });
+        }
 
         currentDate.setDate(currentDate.getDate() + 1); // 增加一天
     }
@@ -34,7 +38,7 @@ function generateRandomData(startMonth, endMonth, startDay, endDay) {
 }
 
 // 生成4月1日到6月30日的数据
-const generatedData = generateRandomData(4, 6, 1, 30);
+const generatedData = generateRandomData(1, 12, 1, 31);
 
 
 export default generatedData

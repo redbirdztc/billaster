@@ -12,7 +12,6 @@ const UpperDrawer = ({ movement, children, height, boxShadow }) => {
         boxShadow: boxShadow
     }
 
-    console.log(movement)
     return (
         <div style={style} className="
             w-full
