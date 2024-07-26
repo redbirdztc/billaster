@@ -3,43 +3,8 @@ import propTypes from "prop-types";
 
 import DailyRecords from "./daily_records";
 
-import FoodIcon from "./img/diet.png";
-import PiggyBank from "./img/piggy-bank.png";
 
 const MonthlyRecords = ({ records }) => {
-    records = [
-        {
-            date: new Date(),
-            category: {
-                "icon": FoodIcon,
-                "code": "Food"
-            },
-            account: {
-                "icon": PiggyBank,
-                "code": "Savings"
-            },
-            amount: 100,
-            unit: "Yuan",
-            isExpense: true
-        },
-    ]
-    for (var i = 0; i < 20; i++) {
-        records.push({
-            date: new Date(new Date().setDate(new Date().getDate() + 1)),
-            category: {
-                "icon": FoodIcon,
-                "code": "Food"
-            },
-            account: {
-                "icon": PiggyBank,
-                "code": "Savings"
-            },
-            amount: 100,
-            unit: "Yuan",
-            isExpense: false
-        })
-    }
-
     // records 按照日期分组并按照日期倒序排序
     const recordsByDate = records.reduce((acc, record) => {
         const date = record.date.getDate();

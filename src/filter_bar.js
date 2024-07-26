@@ -1,5 +1,5 @@
 import React from 'react';
-
+import propTypes from 'prop-types';
 
 import DateDisplay from './date';
 import SquareButton from './button_square';
@@ -9,18 +9,18 @@ import LeftIcon from './img/left.png';
 import RightIcon from './img/right.png';
 import SortIcon from './img/sort.png';
 
-const FilterBar = () => {
+const FilterBar = ({ onFilterClicked, setFilterDate }) => {
     const [date, setDate] = useState(new Date());
 
     const switchToLastMonth = () => {
-        setDate(new Date(date.setMonth(date.getMonth() - 1)));
-
+        const newDate = new Date(date.setMonth(date.getMonth() - 1))
+        setDate(newDate);
+        setFilterDate(newDate);
     };
     const switchToNextMonth = () => {
-        setDate(new Date(date.setMonth(date.getMonth() + 1)));
-    }
-    const filterTheResult = () => {
-        console.log("filterTheResult")
+        const newDate = new Date(date.setMonth(date.getMonth() + 1))
+        setDate(newDate);
+        setFilterDate(newDate);
     }
 
     return (
@@ -35,10 +35,15 @@ const FilterBar = () => {
             </div>
 
             <div className='w-5 h-fit ml-10 mr-5' >
-                <SquareButton onClick={filterTheResult} icon={SortIcon} />
+                <SquareButton onClick={onFilterClicked} icon={SortIcon} />
             </div>
         </div>
     );
+}
+
+FilterBar.propTypes = {
+    onFilterClicked: propTypes.func.isRequired,
+    setFilterDate: propTypes.func.isRequired
 }
 
 

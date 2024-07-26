@@ -1,48 +1,46 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const StatisticItem = ({ name, unit, amount }) => {
-    // 按照金额加逗号分隔
-    const amountString = amount.toLocaleString()
+const StatisticItem = ({ name, amount }) => {
     return (
         <div className='flex flex-col justify-center'>
             <div className="w-full flex justify-center text-sm" >
                 {name}
             </div>
             <div className='flex content-center justify-center w-full text-sm'>
-                {unit} {amountString}
+                {amount}
             </div>
         </div>
     )
 }
 
-const StatisticBar = ({ expense, income }) => {
+const StatisticBar = ({ content }) => {
+    const count = content.length;
     return (
-        <div className='flex w-full justify-center h-12'>
-            <div className='w-1/3'>
-                <StatisticItem name="EXPENSE" unit="Yuan" amount={expense} />
-            </div>
-            <div className='w-1/3'>
-                <StatisticItem name="INCOME" unit="Yuan" amount={income} />
-            </div>
-            <div className='w-1/3'>
-                <StatisticItem name="TOTAL" unit="Yuan" amount={income - expense} />
-            </div>
-
+        < div className='flex w-full justify-evenly h-12' >
+            {content.map((item, index) => {
+                return (
+                    <div key={index} className={'w-1/' + count}>
+                        <StatisticItem name={item[0]} amount={item[1]} />
+                    </div>
+                )
+            })}
         </div >
-    );
+    )
+
 }
+
+
 
 // validate props
 StatisticItem.propTypes = {
     name: PropTypes.string.isRequired,
-    unit: PropTypes.string.isRequired,
-    amount: PropTypes.number.isRequired
+
+    amount: PropTypes.string.isRequired
 }
 
 StatisticBar.propTypes = {
-    expense: PropTypes.number.isRequired,
-    income: PropTypes.number.isRequired,
+    content: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)).isRequired
 }
 
 
