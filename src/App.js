@@ -49,13 +49,26 @@ const footerBtns = [
   }
 ]
 
+function round(number, precision) {
+  return Math.round(+number + "e" + precision) / Math.pow(10, precision);
+}
+
 const RecordsElement = ({ records }) => {
   // filter dataset by date
+
   return (
     <div className='w-full z-0 left-0 pt-[10rem] pb-[3rem]' >
-      <div className='App-background' style={{ height: 'calc(100% - 9rem)' }}>
-        <MonthlyRecords records={records} />
-      </div>
+      {records.length !== 0 ?
+        (
+          <div className='App-background' style={{ height: 'calc(100% - 9rem)' }}>
+            <MonthlyRecords records={records} />
+          </div>) :
+        (
+          <div className='text-center w-full h-[76vh] font-bold'>
+            {"No Records"}
+          </div>
+        )
+      }
     </div>
   )
 }
@@ -89,8 +102,20 @@ function App() {
 
 
   const data = generatedData.filter((record) => {
-    return record.date.getMonth() === date.getMonth();
+    return record.date.getMonth() === date.getMonth() && record.date.getFullYear() === date.getFullYear();
   })
+
+  const expense = round(data.filter((record) => {
+    return record.isExpense
+  }).reduce((acc, record) => {
+    return acc + record.amount;
+  }, 0), 2)
+
+  const income = round(data.filter((record) => {
+    return !record.isExpense
+  }).reduce((acc, record) => {
+    return acc + record.amount;
+  }, 0), 2);
 
   return (
     <div >
@@ -99,13 +124,13 @@ function App() {
           <div className='App-background'  >
             <Header />
             <FilterBar onFilterClicked={() => { setMask(!mask) }} setFilterDate={setDate} />
-            <StatisticBar content={[['EXPENSE', 'Yuan 1362.740'], ['INCOME', 'Yuan 199988.7'], ['BALANCE', 'Yuan 1362.740'],]} />
+            <StatisticBar content={[['EXPENSE', `Yuan ${expense}`], ['INCOME', `Yuan ${income}`], ['BALANCE', `Yuan ${income - expense}`]]} />
           </div>
         </UpperDrawer>
 
         <RecordsElement records={data} />
 
-        <div className='h-12 w-full fixed bottom-0 App-background'>
+        <div className='h-12 w-full fixed bottom-0 App-background' style={{ boxShadow: "1px 0px 16px 1px rgba(0,0,0,0.05)" }}>
           <Footer btns={footerBtns} />
         </div>
         {mask &&

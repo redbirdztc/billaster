@@ -8,10 +8,8 @@ function generateRandomData(startMonth, endMonth, startDay, endDay) {
     const endDate = new Date(2024, endMonth - 1, endDay);
 
     let currentDate = startDate;
-    let amount = 0;
 
     while (currentDate <= endDate) {
-        amount = Math.floor(Math.random() * 500); // 生成0到500的随机金额
         const times = Math.floor(Math.random() * 10); // 生成0到10的随机次数
 
         for (let i = 0; i < times; i++) {
@@ -25,7 +23,7 @@ function generateRandomData(startMonth, endMonth, startDay, endDay) {
                     icon: PiggyBank,
                     code: "Savings"
                 },
-                amount: amount,
+                amount: Math.floor(Math.random() * 50000) / 100,
                 unit: "Yuan",
                 isExpense: true
             });
