@@ -1,16 +1,15 @@
 import './App.css';
 
 import React, { useState } from 'react';
-import propTypes from 'prop-types';
 
 import Header from './header';
 import FilterBar from './filter_bar';
 import StatisticBar from './statistic_bar';
-import MonthlyRecords from './monthly_records';
 import UpperDrawer from './upper_drawer';
 import Footer from './footer';
 import Mask from './mask';
 import FilterForm from './filter_form';
+import RecordsContent from './content_records';
 
 // footer imgs
 import InvoiceIcon from './img/invoice.png';
@@ -18,8 +17,9 @@ import AnalyticsIcon from './img/analytics.png';
 import BudgetIcon from './img/calculator.png';
 import AccountIcon from './img/wallet.png';
 import CategoryIcon from './img/category.png';
+
 import CenterPopper from './center_popper';
-import generatedData from './dataset';
+import generatedData from './dataset/records.js';
 
 const footerBtns = [
   {
@@ -51,30 +51,6 @@ const footerBtns = [
 
 function round(number, precision) {
   return Math.round(+number + "e" + precision) / Math.pow(10, precision);
-}
-
-const RecordsElement = ({ records }) => {
-  // filter dataset by date
-
-  return (
-    <div className='w-full z-0 left-0 pt-[10rem] pb-[3rem]' >
-      {records.length !== 0 ?
-        (
-          <div className='App-background' style={{ height: 'calc(100% - 9rem)' }}>
-            <MonthlyRecords records={records} />
-          </div>) :
-        (
-          <div className='text-center w-full h-[76vh] font-bold'>
-            {"No Records"}
-          </div>
-        )
-      }
-    </div>
-  )
-}
-
-RecordsElement.propTypes = {
-  records: propTypes.arrayOf(propTypes.object).isRequired
 }
 
 function App() {
@@ -121,14 +97,14 @@ function App() {
     <div >
       <div className='App-background' onTouchStart={handleTouchStart} onTouchMove={handleTouchMove(96, setHeaderMovement)}>
         <UpperDrawer movement={headerMovement} maxMovement={96} boxShadow={"0px 1px 16px 2px rgba(0,0,0,0.1)"}>
-          <div className='App-background'  >
+          <div className='App-background'>
             <Header />
             <FilterBar onFilterClicked={() => { setMask(!mask) }} setFilterDate={setDate} />
             <StatisticBar content={[['EXPENSE', `Yuan ${expense}`], ['INCOME', `Yuan ${income}`], ['BALANCE', `Yuan ${income - expense}`]]} />
           </div>
         </UpperDrawer>
 
-        <RecordsElement records={data} />
+        <RecordsContent records={data} />
 
         <div className='h-12 w-full fixed bottom-0 App-background' style={{ boxShadow: "1px 0px 16px 1px rgba(0,0,0,0.05)" }}>
           <Footer btns={footerBtns} />
