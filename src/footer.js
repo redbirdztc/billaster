@@ -1,5 +1,5 @@
 import React from 'react';
-import SquareButton from './button_square';
+import SquareButton from './button/square';
 import PropTypes from 'prop-types';
 
 const Footer = ({ btns }) => {

@@ -1,22 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import propTypes from 'prop-types';
+import Periods from './filter_form_periods';
 
-
-const FilterForm = ({ filterResult }) => {
-    const [curPeriod, setCurPeriod] = useState('DAILY');
-    const period = [
-        'DAILY',
-        'WEEKLY',
-        'MONTHLY',
-        '3 MONTHS',
-        '6 MONTHS',
-        'YEARLY'
-    ]
-
-
-    useEffect(() => {
-        filterResult(curPeriod);
-    }, [curPeriod])
+const FilterForm = ({  curPeriod, onPeriodClick }) => {
     return (
         <div className='flex flex-col justify-center'>
             <div className='font-bold text-center mb-2'>Display Option</div>
@@ -27,14 +13,14 @@ const FilterForm = ({ filterResult }) => {
                     </div>
                     <div className='flex flex-col w-full'>
                         {
-                            period.map((item, index) => {
+                            Periods.map((period, index) => {
                                 return (
                                     <div key={index} className='flex flex-row' >
-                                        <label onClick={(e) => { e.stopPropagation(); setCurPeriod(item) }}
+                                        <label onClick={(e) => onPeriodClick(e, period)}
                                             style={{
-                                                color: curPeriod === item && "green",
-                                                font: curPeriod === item && "bold"
-                                            }}>  {item} {curPeriod === item && "⭕️"}</label>
+                                                color: curPeriod.name === period.name && "green",
+                                                font: curPeriod.name === period.name && "bold"
+                                            }}>  {period.name} {curPeriod.name === period.name && "⭕️"}</label>
                                     </div>
                                 )
                             })
@@ -47,7 +33,8 @@ const FilterForm = ({ filterResult }) => {
 }
 
 FilterForm.propTypes = {
-    filterResult: propTypes.func.isRequired
+    onPeriodClick: propTypes.func.isRequired,
+    curPeriod: propTypes.object.isRequired
 }
 
 

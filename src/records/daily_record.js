@@ -4,7 +4,7 @@ import propTypes from "prop-types";
 
 import "./App.css"
 
-import CircleButton from "./button_circle";
+import CircleButton from "../button/circle";
 
 const DailyRecord = ({ record }) => {
     const { category, account, amount, unit, isExpense } = record;

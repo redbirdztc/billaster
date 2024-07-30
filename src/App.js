@@ -3,13 +3,14 @@ import './App.css';
 import React, { useState } from 'react';
 
 import Header from './header';
-import FilterBar from './filter_bar';
-import StatisticBar from './statistic_bar';
+import FilterBar from './filter/filter_bar.js';
+import StatisticBar from './bar/statistic_bar.js';
 import UpperDrawer from './upper_drawer';
 import Footer from './footer';
 import Mask from './mask';
-import FilterForm from './filter_form';
-import RecordsContent from './content_records';
+import FilterForm from './filter/filter_form.js';
+import RecordsContent from './records/content_records.js';
+import { PeriodMonthly } from './filter/filter_form_periods.js';
 
 // footer imgs
 import InvoiceIcon from './img/invoice.png';
@@ -18,7 +19,7 @@ import BudgetIcon from './img/calculator.png';
 import AccountIcon from './img/wallet.png';
 import CategoryIcon from './img/category.png';
 
-import CenterPopper from './center_popper';
+import CenterPopper from './popper/center_popper.js';
 import generatedData from './dataset/records.js';
 
 const footerBtns = [
@@ -54,10 +55,13 @@ function round(number, precision) {
 }
 
 function App() {
+  const now = new Date();
   const [headerMovement, setHeaderMovement] = useState(0);
   const [startY, setStartY] = useState(0);
   const [mask, setMask] = useState(false);
-  const [date, setDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(new Date(`${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-01T00:00:00.000+08:00`));
+  const [endDate, setEndDate] = useState(new Date(`${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate()}T23:59:59.999+08:00`));
+  const [period, setPeriod] = useState(PeriodMonthly);
 
   const handleTouchStart = (event) => {
     setStartY(event.touches[0].clientY);
@@ -78,7 +82,7 @@ function App() {
 
 
   const data = generatedData.filter((record) => {
-    return record.date.getMonth() === date.getMonth() && record.date.getFullYear() === date.getFullYear();
+    return record.date.getTime() >= startDate.getTime() && record.date.getTime() <= endDate.getTime();
   })
 
   const expense = round(data.filter((record) => {
@@ -99,7 +103,12 @@ function App() {
         <UpperDrawer movement={headerMovement} maxMovement={96} boxShadow={"0px 1px 16px 2px rgba(0,0,0,0.1)"}>
           <div className='App-background'>
             <Header />
-            <FilterBar onFilterClicked={() => { setMask(!mask) }} setFilterDate={setDate} />
+            <FilterBar onFilterClicked={() => { setMask(!mask) }}
+              setStartDate={setStartDate}
+              setEndDate={setEndDate}
+              startDate={startDate}
+              endDate={endDate}
+              period={period} />
             <StatisticBar content={[['EXPENSE', `Yuan ${expense}`], ['INCOME', `Yuan ${income}`], ['BALANCE', `Yuan ${income - expense}`]]} />
           </div>
         </UpperDrawer>
@@ -113,7 +122,15 @@ function App() {
           <Mask zIndex={20} color={"#858173"} onClick={() => setMask(!mask)}>
             <CenterPopper>
               <div className='w-2/3 App-background rounded-2xl p-4'>
-                <FilterForm filterResult={() => { }}></FilterForm>
+
+                <FilterForm curPeriod={period}
+                  onPeriodClick={(e) => {
+                    e.stopPropagation();
+                    const arr = period.getStartEndFromNow();
+                    setStartDate(arr[0]); setEndDate(arr[1]);
+                    setPeriod(period);
+                  }}></FilterForm>
+
               </div>
             </CenterPopper>
           </Mask>
