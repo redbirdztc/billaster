@@ -4,7 +4,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import './index.css';
-import './tailwind_output.css';
+// import './tailwind_output.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

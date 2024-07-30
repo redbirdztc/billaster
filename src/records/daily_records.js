@@ -1,8 +1,6 @@
 import React from "react";
 import propTypes from "prop-types";
-
-import "./App.css"
-
+import Divider from '@mui/material/Divider';
 import DailyRecord from "./daily_record";
 
 const DailyRecords = ({ date, records }) => {
@@ -10,17 +8,13 @@ const DailyRecords = ({ date, records }) => {
     const day = date.toLocaleString('en-us', { day: "numeric" });
     const weekday = date.toLocaleString('en-us', { weekday: "long" });
 
-    const seperator = () => (
-        <div className="flex flex-row w-auto ml-10 mt-1 mb-1 h-px bg-zinc-500" ></div>
-    )
-
     const elementsOfRecords = records.map((record, index) => {
         const isLast = index === Object.keys(records).length - 1;
 
         return (
             <div key={index}>
                 {DailyRecord({ record })}
-                {isLast ? null : seperator()}
+                {isLast ? null : <div className="w-auto ml-10 mt-1 mb-1"><Divider /></div>}
             </div>
         )
     })

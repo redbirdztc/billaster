@@ -2,7 +2,7 @@ import React from 'react';
 
 import './App.css';
 
-import SquareButton from './button_square';
+import SquareButton from './button/square';
 import menuIcon from './img/menu.png';
 import searchIcon from './img/search.png';
 
