@@ -4,9 +4,9 @@ import propTypes from 'prop-types';
 import DateDisplay from '../records/date';
 import SquareButton from '../button/square';
 
-import LeftIcon from './img/left.png';
-import RightIcon from './img/right.png';
-import SortIcon from './img/sort.png';
+import LeftIcon from '../img/left.png';
+import RightIcon from '../img/right.png';
+import SortIcon from '../img/sort.png';
 
 const FilterBar = ({ onFilterClicked, setStartDate, setEndDate, startDate, endDate, period }) => {
     const prevFunc = () => {

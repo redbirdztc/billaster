@@ -1,9 +1,6 @@
 import React from "react";
 import propTypes from "prop-types";
 import Divider from '@mui/material/Divider';
-
-import "./App.css"
-
 import DailyRecord from "./daily_record";
 
 const DailyRecords = ({ date, records }) => {
