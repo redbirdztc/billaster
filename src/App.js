@@ -144,7 +144,7 @@ function App() {
         {
           <div className={'App-background h-12 p-2 z-0 fixed right-5 rounded-full content-center' + (" bottom-" + (addRecordBtnShowing ? '16' : '0')) + ''}
             style={{
-              transition: 'all .1s',
+              transition: 'all .4s',
               boxShadow: addRecordBtnShowing ? "0px 0px 8px 2px rgba(0,0,0,0.1)" : "",
             }} >
             <CircleButton icon={PlusIcon} onClick={() => { }} />

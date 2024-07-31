@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 
-import DateDisplay from '../records/date';
+import DateDisplay from './date';
 import SquareButton from '../button/square';
 
 import LeftIcon from '../img/left.png';

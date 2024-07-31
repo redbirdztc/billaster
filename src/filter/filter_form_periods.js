@@ -52,7 +52,7 @@ const PeriodMonthly = {
 }
 
 const Period3Months = {
-    name: '3 MONTHLY',
+    name: '3 MONTHS',
     getStartByEnd: (end) => {
         return new Date(end.getFullYear(), end.getMonth() - 2, 1);
     },
@@ -68,7 +68,7 @@ const Period3Months = {
 }
 
 const Period6Months = {
-    name: '6 MONTHLY',
+    name: '6 MONTHS',
     getStartByEnd: (end) => {
         return new Date(end.getFullYear(), end.getMonth() - 5, 1);
     },
