@@ -62,8 +62,7 @@ const Period3Months = {
     getStartEndFromNow: () => {
         const start = new Date();
         start.setMonth(start.getMonth() - 2, 1);
-        const end = new Date();
-        end.setMonth(end.getMonth() + 2, 0);
+        const end = new Date(start.getFullYear(), start.getMonth() + 2, 0, 23, 59, 59);
         return [start, end];
     }
 }
@@ -79,8 +78,7 @@ const Period6Months = {
     getStartEndFromNow: () => {
         const start = new Date();
         start.setMonth(start.getMonth() - 5, 1);
-        const end = new Date();
-        end.setMonth(end.getMonth() + 5, 0);
+        const end = new Date(start.getFullYear(), start.getMonth() + 5, 0, 23, 59, 59);
         return [start, end];
     }
 }

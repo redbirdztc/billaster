@@ -18,7 +18,7 @@ const FilterForm = ({  curPeriod, onPeriodClick }) => {
                                     <div key={index} className='flex flex-row' >
                                         <label onClick={(e) => onPeriodClick(e, period)}
                                             style={{
-                                                color: curPeriod.name === period.name && "green",
+                                                color: curPeriod.name === period.name && "#e50101",
                                                 font: curPeriod.name === period.name && "bold"
                                             }}>  {period.name} {curPeriod.name === period.name && "⭕️"}</label>
                                     </div>

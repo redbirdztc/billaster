@@ -25,8 +25,6 @@ const FilterBar = ({ onFilterClicked, setStartDate, setEndDate, startDate, endDa
 
     let displayedDate;
 
-    console.log(startDate)
-    console.log(endDate)
     switch (period.name) {
         case "DAILY":
         case "MONTHLY":

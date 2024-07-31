@@ -24,7 +24,7 @@ const DailyRecord = ({ record }) => {
                     <span className='ml-2 font-extralight'>{account.code}</span>
                 </div>
             </div>
-            <div className="ml-auto" style={{ color: isExpense ? 'red' : 'green' }}>{isExpense ? '-' : ''}{unit}{amountStr}</div>
+            <div className="ml-auto" style={{ color: isExpense ? 'red' : 'green' }}>{isExpense ? '-' : ''}{`${unit} ${amountStr}`}</div>
         </div>
     );
 };
