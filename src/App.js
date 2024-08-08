@@ -15,6 +15,7 @@ import CircleButton from './button/circle.js';
 import generatedData from './dataset/records.js';
 import RecordsContent from './records/content_records.js';
 import { PeriodMonthly } from './filter/filter_form_periods.js';
+import RecordAddition from './record_addition.js';
 
 // footer imgs
 import InvoiceIcon from './img/invoice.png';
@@ -62,9 +63,9 @@ function App() {
   const [headerMovement, setHeaderMovement] = useState(0);
   const [startY, setStartY] = useState(0);
   const [mask, setMask] = useState(false);
-  const [startDate, setStartDate] = useState(new Date(`${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-01T00:00:00.000+08:00`));
-  const [endDate, setEndDate] = useState(new Date(`${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate()}T23:59:59.999+08:00`));
   const [period, setPeriod] = useState(PeriodMonthly);
+  const [startDate, setStartDate] = useState(new Date(`${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-01T00:00:00.000+08:00`));
+  const [endDate, setEndDate] = useState(period.getEndByStart(startDate));
   const [addRecordBtnShowing, setAddRecordBtnShowing] = useState(true);
 
   const handleTouchStart = (event) => {
@@ -141,16 +142,17 @@ function App() {
           </Mask>
         }
 
-        {
-          <div className={'App-background h-12 p-2 z-0 fixed right-5 rounded-full content-center' + (" bottom-" + (addRecordBtnShowing ? '16' : '0')) + ''}
-            style={{
-              transition: 'all .4s',
-              boxShadow: addRecordBtnShowing ? "0px 0px 8px 2px rgba(0,0,0,0.1)" : "",
-            }} >
-            <CircleButton icon={PlusIcon} onClick={() => { }} />
-          </div>
-        }
+        <div className={'App-background h-12 p-2 z-0 fixed right-5 rounded-full content-center' + (" bottom-" + (addRecordBtnShowing ? '16' : '0')) + ''}
+          style={{
+            transition: 'all .4s',
+            boxShadow: addRecordBtnShowing ? "0px 0px 8px 2px rgba(0,0,0,0.1)" : "",
+          }} >
+          <CircleButton icon={PlusIcon} onClick={() => { }} />
+        </div>
 
+        <div className='fixed w-full h-full z-20 left-0 top-0 App-background'>
+          <RecordAddition onCancel={() => { }} onSave={() => { }}></RecordAddition>
+        </div>
       </div>
     </div>
   );
